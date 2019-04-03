@@ -1,0 +1,57 @@
+<div class="status-sc">
+
+  <div class="mat-elevation-z8 col-100">
+
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Project </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Current Status </th>
+        <td mat-cell *matCellDef="let element">
+          <p *ngFor="let item of statusTpyes">
+            <span *ngIf="element.status===item.type" [style.background]="item.color" class="circle"></span>
+          </p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="currentStatus">
+        <th mat-header-cell *matHeaderCellDef> Set Status </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-form-field>
+            <mat-label>{{element.status}}</mat-label>
+            <mat-select id="select-{{element.id}}"  (selectionChange)="isActive(element.id)">
+              <mat-option *ngFor="let status of statusTpyes" [value]="element.name">
+                <span *ngIf="status.type !== element.status">
+                  {{status.type}}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element"> 
+          <!-- <div class="buttons"> -->
+            <button mat-raised-button class="b-green c-white" (click)="save(element.id)" id="save-{{element.id}}" disabled='true'>Save</button>
+            <button mat-raised-button color="warn" (click)="restart(element.id)">Restart Site</button>
+          <!-- </div> -->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+  
+
+</div>

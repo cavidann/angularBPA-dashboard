@@ -1,0 +1,187 @@
+<div class="email-sc">
+  <h1>E-Mails</h1>
+
+  <div class="flex j-end">
+    <form [formGroup]="addEmailForm" (ngSubmit)="addEmail(addEmailForm.value)"
+      class="example-form flex wrap col-100 a-center">
+      <div style="width: calc(100% - 55px)" class="flex">
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="user" placeholder="user" formControlName="user" />
+          </mat-form-field>
+
+          <div *ngIf="user.touched && user.invalid">
+            <mat-error *ngIf="(user?.errors)['required']">
+              User is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="email" placeholder="email" formControlName="email" />
+          </mat-form-field>
+
+          <div *ngIf="email.touched && email.invalid">
+            <mat-error *ngIf="(email?.errors)['required']">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="(email?.errors)['email']">
+              Email isn`t true
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="createdAt" name="createdAt"
+              formControlName="createdAt">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <div *ngIf="createdAt.touched && createdAt.invalid">
+            <mat-error *ngIf="(createdAt?.errors)['required']">
+              Created At is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="createdBy" placeholder="createdBy"
+              formControlName="createdBy" />
+          </mat-form-field>
+
+          <div *ngIf="createdBy.touched && createdBy.invalid">
+            <mat-error *ngIf="(createdBy?.errors)['required']">
+              Created By is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="modifiedAt" name="modifiedAt"
+              formControlName="modifiedAt">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <div *ngIf="modifiedAt.touched && modifiedAt.invalid">
+            <mat-error *ngIf="(modifiedAt?.errors)['required']">
+              Modified At is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="modifiedBy" placeholder="modifiedBy"
+              formControlName="modifiedBy" />
+          </mat-form-field>
+
+          <div *ngIf="modifiedBy.touched && modifiedBy.invalid">
+            <mat-error *ngIf="(modifiedBy?.errors)['required']">
+              Modified By is required
+            </mat-error>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="example-button-row">
+        <div class="button-w-txt">
+          <div>
+            <p class="p-position-top">Create</p>
+          </div>
+          <div class="img flex a-center j-center">
+            <button type="submit" [disabled]="!addEmailForm.valid" [class.link]="addEmailForm.valid">
+              <i class="fas fa-plus" [class.c-green]="addEmailForm.valid"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="mat-elevation-z8 col-100">
+
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef> Users </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.user}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Emails </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.email}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.createdAt | date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef> Created By </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.createdBy}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="modifiedAt">
+        <th mat-header-cell *matHeaderCellDef> Modified At </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.modifiedAt | date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="modifiedBy">
+        <th mat-header-cell *matHeaderCellDef> Modified By </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.modifiedBy}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex j-end">
+            <div class="button-w-txt">
+              <div>
+                <p class="p-position-top">Edit</p>
+              </div>
+              <div class="img flex a-center j-center">
+                <i class="fas fa-edit c-blue link" (click)="edit(element.id)"></i>
+              </div>
+            </div>
+            <div class="button-w-txt">
+              <div>
+                <p class="p-position-top">Delete</p>
+              </div>
+              <div class="img flex a-center j-center">
+                <i class="fas fa-trash c-red link" (click)="delete(element)"></i>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

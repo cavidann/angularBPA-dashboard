@@ -1,0 +1,96 @@
+<div class="scheduling-edit">
+  <div class="flex j-end">
+    <form [formGroup]="editSchedulingForm" (ngSubmit)="editScheduling(editSchedulingForm.value)"
+    class="example-form flex wrap col-100 a-center">
+    <div style="width: calc(100% - 55px)" class="flex">
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="{{schedule.start | date: 'dd/MM/yyyy'}}" name="start" formControlName="start">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="start.touched && start.invalid">
+          <mat-error *ngIf="(start?.errors)['required']">
+            Start is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="{{schedule.end | date: 'dd/MM/yyyy'}}" name="end" formControlName="end">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="end.touched && end.invalid">
+          <mat-error *ngIf="(end?.errors)['required']">
+            End is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="status" name="status" formControlName="status">
+            <mat-option *ngFor="let status of statusTpyes" [value]="status.type">
+              <span>
+                {{status.type}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="status.touched && status.invalid">
+          <mat-error *ngIf="(status?.errors)['required']">
+            Status is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="{{schedule.createdAt | date: 'dd/MM/yyyy'}}" name="createdAt"
+            formControlName="createdAt">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="createdAt.touched && createdAt.invalid">
+          <mat-error *ngIf="(createdAt?.errors)['required']">
+            Created at is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="createdBy" placeholder="createdBy"
+            formControlName="createdBy" />
+        </mat-form-field>
+
+        <div *ngIf="createdBy.touched && createdBy.invalid">
+          <mat-error *ngIf="(createdBy?.errors)['required']">
+            Created by is required
+          </mat-error>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-button-row">
+      <div class="button-w-txt">
+        <div>
+          <p class="p-position-top">Edit</p>
+        </div>
+        <div class="img flex a-center j-center">
+          <button type="submit" class="link">
+            <i class="fas fa-edit c-blue"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  </div>
+</div>

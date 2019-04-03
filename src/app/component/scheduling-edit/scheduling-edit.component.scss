@@ -1,0 +1,32 @@
+.scheduling-edit {
+  max-width: 991px;
+  margin: 0 auto;
+  & > div {
+    height: 100%;
+  }
+  button {
+    padding: 0px;
+    background: transparent;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  .fa-plus {
+    padding-top: 0px;
+  }
+}
+
+.mat-option {
+  padding: 0px !important;
+  height: auto !important;
+  span {
+    padding: 0px 16px;
+    line-height: 3em;
+    height: 3em;
+  }
+}
+
+.form-group{
+  width: 20%;
+}

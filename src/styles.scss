@@ -1,1 +1,292 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$menuHeight: 57px;
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: Roboto, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  position: relative;
+  background: #f2f3f2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #b3b3b3;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.a-center {
+  align-items: center;
+}
+
+.j-center {
+  justify-content: center;
+}
+
+.j-end {
+  justify-content: flex-end;
+}
+
+.a-end {
+  align-items: flex-end;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.container {
+  // max-width: 920px;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.col-25 {
+  width: 25%;
+}
+
+.col-33 {
+  width: 33.33%;
+}
+
+.col-50 {
+  width: 50%;
+}
+
+.col-67{
+  widows: 66.67%;
+}
+
+.col-100 {
+  width: 100%;
+}
+
+.col-count3 {
+  column-count: 3;
+}
+
+.max-h-300 {
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.link {
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+* {
+  animation: example;
+  animation-duration: 0.3s;
+}
+
+.no-duration {
+  animation: none !important;
+  animation-duration: 0s !important;
+  transition: 0s !important;
+}
+
+button div,
+form * {
+  animation-duration: 0s;
+}
+
+@keyframes example {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.circle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.h-100 {
+  height: calc(100vh - #{$menuHeight});
+  overflow-y: auto;
+}
+
+.mat-expansion-panel-header {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.mat-list-item-content {
+  padding: 0px !important;
+  a {
+    padding: 32px !important;
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0px !important;
+}
+
+.mat-list {
+  padding-top: 0px !important;
+}
+
+.b-green {
+  background: rgb(33, 196, 33);
+}
+
+.b-grey {
+  background: #f2f3f2;
+}
+
+.c-white {
+  color: white;
+}
+
+.c-red {
+  color: red;
+}
+
+.c-green {
+  color: rgb(33, 196, 33);
+}
+
+.c-blue {
+  color: #00a1ff;
+}
+
+.mat-checkbox * {
+  animation-duration: 0s !important;
+  transition: 0s !important;
+}
+
+.mat-checkbox {
+  animation-duration: 0s !important;
+  transition: 0s !important;
+}
+
+.fa-plus {
+  font-size: 23px;
+  padding: 16px;
+}
+
+.fa-edit,
+.fa-trash {
+  font-size: 19px;
+  padding: 0px 8px;
+}
+
+.button-w-txt {
+  position: relative;
+  box-sizing: border-box;
+  p {
+    position: absolute;
+    background: #2c3e50;
+    color: white;
+    border-radius: 3px;
+    padding: 6px 10px;
+    font-size: 12px !important;
+    white-space: nowrap;
+    display: none;
+    opacity: 0 !important;
+    transition: 0.1s ease-in-out;
+    margin: 0px;
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #2c3e50;
+      position: absolute;
+    }
+    &.p-position-top {
+      top: -14px;
+      left: 50%;
+      transform: translate(-50%, -100%);
+      &:after {
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%, 100%);
+      }
+    }
+    &.p-position-left {
+      top: 50%;
+      left: -6px;
+      transform: translate(-100%, -50%);
+      &:after {
+        top: 50%;
+        right: 0px;
+        transform: translate(75%, -50%) rotate(-90deg);
+      }
+    }
+  }
+  &:hover p {
+    display: block;
+    opacity: 1 !important;
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-error {
+  margin-bottom: 16px;
+  margin-top: -12px;
+  font: {
+    size: 12px;
+  }
+}
+
+.mat-select-panel {
+  max-height: 70vh !important;
+}
+
+.mat-primary .mat-option {
+  padding-left: 16px !important;
+}
+
+.p-16{
+  padding: 16px;
+}
+
+.card{
+  box-shadow: 0 3px 14px 2px rgba(0,0,0,.12);
+}

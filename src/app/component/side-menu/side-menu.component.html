@@ -1,0 +1,26 @@
+<mat-expansion-panel [expanded]="!false" *ngFor="let menu of menus">
+
+  <!-- <div > -->
+    <mat-expansion-panel-header *ngIf="menu.children else single" style="height: 48px!important;">
+      <mat-panel-title class="capitalize">
+        {{menu.name}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-list role="list">
+      <mat-list-item role="listitem" *ngFor="let child of menu.children">
+        <a routerLink="/{{child.url}}" routerLinkActive="active" class="flex a-center capitalize">{{child.name}}</a>
+      </mat-list-item>
+    </mat-list>
+  <!-- </div> -->
+
+  <ng-template #single>
+    <div class="single">
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <a routerLink="/{{menu.url}}" routerLinkActive="active" class="flex a-center capitalize">{{menu.name}}</a>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </ng-template>
+
+</mat-expansion-panel>

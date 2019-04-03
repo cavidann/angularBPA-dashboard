@@ -1,0 +1,103 @@
+<div class="smtp-settings-edit-sc">
+  <div>
+    <form [formGroup]="editSmtpSettingsForm" (ngSubmit)="editSmtpSettings(editSmtpSettingsForm.value)"
+      class="example-form">
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" class="form-control" name="username" placeholder="username"
+            formControlName="username">
+        </mat-form-field>
+
+        <div *ngIf="username.touched && username.invalid">
+          <mat-error *ngIf="(username?.errors)['required']">
+            Username is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput type="email" class="form-control" name="email" placeholder="email" formControlName="email">
+        </mat-form-field>
+
+        <div *ngIf="email.touched && email.invalid">
+          <mat-error *ngIf="(email?.errors)['required']">
+            E-mail is required
+          </mat-error>
+          <mat-error *ngIf="(email?.errors)['email']">
+            E-mail isn`t true
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" class="form-control" name="password" placeholder="password"
+            formControlName="password">
+        </mat-form-field>
+
+        <div *ngIf="password.touched && password.invalid">
+          <mat-error *ngIf="(password?.errors)['required']">
+            Password is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" class="form-control" name="host" placeholder="host" formControlName="host">
+        </mat-form-field>
+
+        <div *ngIf="host.touched && host.invalid">
+          <mat-error *ngIf="(host?.errors)['required']">
+            Host is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" class="form-control" name="port" placeholder="port" formControlName="port">
+        </mat-form-field>
+
+        <div *ngIf="port.touched && port.invalid">
+          <mat-error *ngIf="(port?.errors)['required']">
+            Port is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <mat-checkbox formControlName="enableSsl" name="enableSsl">enableSsl</mat-checkbox>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="{{smtpSetting.timeout | date: 'dd/MM/yyyy'}}"
+            name="timeout" formControlName="timeout">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="timeout.touched && timeout.invalid">
+          <mat-error *ngIf="(timeout?.errors)['required']">
+            Timeout is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="example-button-row">
+        <div class="button-w-txt">
+          <div>
+            <p class="p-position-top capitalize">save</p>
+          </div>
+          <div class="img flex a-center j-center">
+            <button mat-flat-button class="capitalize b-green c-white">save</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

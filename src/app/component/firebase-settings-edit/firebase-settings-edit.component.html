@@ -1,0 +1,42 @@
+<div class="firebase-settings-edit-sc">
+  <form [formGroup]="editFirebaseSettingsForm" (ngSubmit)="editFirebaseSettings(editFirebaseSettingsForm.value)"
+    class="example-form">
+
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" class="form-control" name="url" placeholder="url" formControlName="url">
+      </mat-form-field>
+
+      <div *ngIf="url.touched && url.invalid">
+        <mat-error *ngIf="(url?.errors)['required']">
+          E-mail is required
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" class="form-control" name="authToken" placeholder="authToken"
+          formControlName="authToken">
+      </mat-form-field>
+
+      <div *ngIf="authToken.touched && authToken.invalid">
+        <mat-error *ngIf="(authToken?.errors)['required']">
+          AuthToken is required
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="example-button-row">
+      <div class="button-w-txt">
+        <div>
+          <p class="p-position-top capitalize">save</p>
+        </div>
+        <div class="img flex a-center j-center">
+          <button mat-flat-button class="capitalize b-green c-white">save</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,16 @@
+.content-edit-sc {
+  max-width: 991px;
+  margin: 0 auto;
+  & > div {
+    height: 100%;
+  }
+  padding-top: 50px;
+
+  .form-group {
+    width: 100%;
+  }
+
+  .example-button-row {
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,13 @@
+$purple: #3f51b5;
+
+.side{
+    width: 300px;
+    background: $purple;
+    padding: 16px 32px;
+}
+
+.content{
+    width: calc(100vw - 300px);
+    padding: 16px;
+    padding-top: 40px;
+}

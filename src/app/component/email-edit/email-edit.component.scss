@@ -1,0 +1,16 @@
+.email-edit-sc {
+  max-width: 991px;
+  margin: 0 auto;
+  & > div {
+    height: 100%;
+  }
+  padding-top: 50px;
+}
+
+.form-group {
+  width: calc(100% / 6);
+}
+
+.example-button-row {
+  margin: 0 auto;
+}

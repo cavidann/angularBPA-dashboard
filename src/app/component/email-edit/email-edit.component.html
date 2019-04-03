@@ -1,0 +1,103 @@
+<div class="email-edit-sc">
+  <form [formGroup]="editEmailForm" (ngSubmit)="editEmail(editEmailForm.value)"
+    class="example-form flex wrap col-100 a-center">
+    <!-- <div class="flex wrap a-center"> -->
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="user" placeholder="user" formControlName="user" />
+        </mat-form-field>
+
+        <div *ngIf="user.touched && user.invalid">
+          <mat-error *ngIf="(user?.errors)['required']">
+            User is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="email" placeholder="email" formControlName="email" />
+        </mat-form-field>
+
+        <div *ngIf="email.touched && email.invalid">
+          <mat-error *ngIf="(email?.errors)['required']">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="(email?.errors)['email']">
+            Email isn`t true
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="{{emailItem.createdAt | date: 'dd/MM/yyyy'}}" name="createdAt"
+            formControlName="createdAt">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="createdAt.touched && createdAt.invalid">
+          <mat-error *ngIf="(createdAt?.errors)['required']">
+            Created At is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="createdBy" placeholder="createdBy"
+            formControlName="createdBy" />
+        </mat-form-field>
+
+        <div *ngIf="createdBy.touched && createdBy.invalid">
+          <mat-error *ngIf="(createdBy?.errors)['required']">
+            Created By is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="{{emailItem.modifiedAt | date: 'dd/MM/yyyy'}}" name="modifiedAt"
+            formControlName="modifiedAt">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <div *ngIf="modifiedAt.touched && modifiedAt.invalid">
+          <mat-error *ngIf="(modifiedAt?.errors)['required']">
+            Modified At is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="modifiedBy" placeholder="modifiedBy"
+            formControlName="modifiedBy" />
+        </mat-form-field>
+
+        <div *ngIf="modifiedBy.touched && modifiedBy.invalid">
+          <mat-error *ngIf="(modifiedBy?.errors)['required']">
+            Modified By is required
+          </mat-error>
+        </div>
+      </div>
+
+    <!-- </div> -->
+
+    <div class="example-button-row">
+      <div class="button-w-txt">
+        <div>
+          <p class="p-position-top capitalize">save</p>
+        </div>
+        <div class="img flex a-center j-center">
+          <button mat-flat-button class="capitalize b-green c-white">save</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

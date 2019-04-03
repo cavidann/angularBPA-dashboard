@@ -1,0 +1,172 @@
+<div class="scheduling-sc">
+  <div class="flex j-end">
+    <form [formGroup]="addSchedulingForm" (ngSubmit)="addScheduling(addSchedulingForm.value)"
+      class="example-form flex wrap col-100 a-center">
+      <div style="width: calc(100% - 55px)" class="flex">
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="start" name="start" formControlName="start">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <div *ngIf="start.touched && start.invalid">
+            <mat-error *ngIf="(start?.errors)['required']">
+              Start is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="end" name="end" formControlName="end">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <div *ngIf="end.touched && end.invalid">
+            <mat-error *ngIf="(end?.errors)['required']">
+              End is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select placeholder="status" name="status" formControlName="status">
+              <mat-option *ngFor="let status of statusTpyes" [value]="status.type">
+                <span>
+                  {{status.type}}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="status.touched && status.invalid">
+            <mat-error *ngIf="(status?.errors)['required']">
+              Status is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="created at" name="createdAt"
+              formControlName="createdAt">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <div *ngIf="createdAt.touched && createdAt.invalid">
+            <mat-error *ngIf="(createdAt?.errors)['required']">
+              Created at is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="createdBy" placeholder="createdBy"
+              formControlName="createdBy" />
+          </mat-form-field>
+
+          <div *ngIf="createdBy.touched && createdBy.invalid">
+            <mat-error *ngIf="(createdBy?.errors)['required']">
+              Created by is required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-button-row">
+        <div class="button-w-txt">
+          <div>
+            <p class="p-position-top">Create</p>
+          </div>
+          <div class="img flex a-center j-center">
+            <button type="submit" [disabled]="!addSchedulingForm.valid" [class.link]="addSchedulingForm.valid">
+              <i class="fas fa-plus" [class.c-green]="addSchedulingForm.valid"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="mat-elevation-z8 col-100">
+
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="start">
+        <th mat-header-cell *matHeaderCellDef> Start </th>
+        <td mat-cell *matCellDef="let element"> 
+          {{element.start | date: 'dd/MM/yyyy'}} 
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="end">
+        <th mat-header-cell *matHeaderCellDef> End </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.end | date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+          <p *ngFor="let item of statusTpyes">
+            <span *ngIf="element.status===item.type" [style.background]="item.color" class="circle"></span>
+          </p>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.createdAt | date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef> Created By </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.createdBy}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex j-end">
+            <div class="button-w-txt">
+              <div>
+                <p class="p-position-top">Edit</p>
+              </div>
+              <div class="img flex a-center j-center">
+                <i class="fas fa-edit c-blue link" (click)="edit(element.id)"></i>
+              </div>
+            </div>
+            <div class="button-w-txt">
+              <div>
+                <p class="p-position-top">Delete</p>
+              </div>
+              <div class="img flex a-center j-center">
+                <i class="fas fa-trash c-red link" (click)="delete(element)"></i>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+
+
+</div>

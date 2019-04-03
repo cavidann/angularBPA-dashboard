@@ -1,0 +1,99 @@
+<div class="user-edit-sc">
+  <form [formGroup]="editUserForm" (ngSubmit)="editUser(editUserForm.value)"
+      class="example-form flex wrap col-100 a-center">
+      <div style="width: calc(100% - 55px)" class="flex">
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="name" placeholder="name" formControlName="name" />
+          </mat-form-field>
+
+          <div *ngIf="name.touched && name.invalid">
+            <mat-error *ngIf="(name?.errors)['required']">
+              Name by is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" name="surname" placeholder="surname"
+              formControlName="surname" />
+          </mat-form-field>
+
+          <div *ngIf="surname.touched && surname.invalid">
+            <mat-error *ngIf="(surname?.errors)['required']">
+              Surname by is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select placeholder="blocked" name="blocked" formControlName="blocked">
+              <mat-option *ngFor="let blocked of blockedTpyes" [value]="blocked">
+                <span>
+                  {{blocked}}
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="blocked.touched && blocked.invalid">
+            <mat-error *ngIf="(blocked?.errors)['required']">
+              Blocked by is required
+            </mat-error>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field>
+            <mat-select multiple placeholder="permissions" name="permissions" formControlName="permissions">
+              <div *ngFor="let permission of permissionTypes">
+                <div *ngIf="permission.children.length > 0; else singlePerm" class="p-l-16">
+                  <p class="capitalize">{{permission.value}}</p>
+                  <mat-option *ngFor="let child of permission.children"
+                    [value]="permission.value + ' - ' + child.value">
+                    <span class="capitalize p-l-16">
+                      {{child.value}}
+                    </span>
+                  </mat-option>
+                </div>
+                <ng-template #singlePerm>
+                  <mat-option [value]="'single - ' + permission.value">
+                    <span class="capitalize p-l-16">
+                      {{permission.value}}
+                    </span>
+                  </mat-option>
+                </ng-template>
+
+              </div>
+
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngIf="permissions.touched && permissions.invalid">
+            <mat-error *ngIf="(permissions?.errors)['required']">
+              Permissions by is required
+            </mat-error>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="example-button-row">
+        <div class="button-w-txt">
+          <div>
+            <p class="p-position-top">Edit</p>
+          </div>
+          <div class="img flex a-center j-center">
+            <button type="submit" [disabled]="!editUserForm.valid" [class.link]="editUserForm.valid">
+              <i class="fas fa-edit link" [class.c-blue]="editUserForm.valid"></i>
+              <!-- <i class="fas fa-edit c-blue link" (click)="edit(element.id)"></i> -->
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+</div>

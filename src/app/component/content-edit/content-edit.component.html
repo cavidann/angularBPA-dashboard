@@ -1,0 +1,33 @@
+<div class="content-edit-sc">
+  <form [formGroup]="editContentForm" (ngSubmit)="editContent(editContentForm.value)"
+    class="example-form flex wrap col-100 a-center">
+    <div style="width: calc(100% - 55px)" class="flex">
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="content" placeholder="content"
+            formControlName="content" />
+        </mat-form-field>
+
+        <div *ngIf="content.touched && content.invalid">
+          <mat-error *ngIf="(content?.errors)['required']">
+            Content by is required
+          </mat-error>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="example-button-row">
+        <div class="button-w-txt">
+          <div>
+            <p class="p-position-top capitalize">save</p>
+          </div>
+          <div class="img flex a-center j-center">
+            <button mat-flat-button class="capitalize b-green c-white">save</button>
+          </div>
+        </div>
+      </div>
+
+  </form>
+</div>

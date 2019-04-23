@@ -1,0 +1,109 @@
+<div class="rules-edit-sc">
+  <form [formGroup]="editRulesForm" (ngSubmit)="editRules(editRulesForm.value)" class="example-form flex wrap col-100">
+    <div style="width: calc(100% - 55px)" class="flex wrap">
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="ip" placeholder="ip" formControlName="ip" />
+        </mat-form-field>
+
+        <div *ngIf="ip.touched && ip.invalid">
+          <mat-error *ngIf="(ip?.errors)['required']">
+            Ip by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="params" placeholder="params"
+            formControlName="params" />
+        </mat-form-field>
+
+        <div *ngIf="params.touched && params.invalid">
+          <mat-error *ngIf="(params?.errors)['required']">
+            Params by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="value" placeholder="value" formControlName="value" />
+        </mat-form-field>
+
+        <div *ngIf="value.touched && value.invalid">
+          <mat-error *ngIf="(value?.errors)['required']">
+            Value by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="info" placeholder="info" formControlName="info" />
+        </mat-form-field>
+
+        <div *ngIf="info.touched && info.invalid">
+          <mat-error *ngIf="(info?.errors)['required']">
+            Info by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="function" name="function" formControlName="function">
+            <mat-option *ngFor="let functionType of functionTypes" [value]="functionType">
+              <span>
+                {{functionType}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="function.touched && function.invalid">
+          <mat-error *ngIf="(function?.errors)['required']">
+            Function by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="actionType" name="actionType" formControlName="actionType">
+            <mat-option *ngFor="let actionType of actionTypes" [value]="actionType">
+              <span>
+                {{actionType}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="actionType.touched && actionType.invalid">
+          <mat-error *ngIf="(actionType?.errors)['required']">
+            ActionType by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group mat-checkbox-form flex j-center a-end">
+        <mat-checkbox formControlName="alert" name="alert">Alert</mat-checkbox>
+      </div>
+      <div class="form-group mat-checkbox-form flex j-center a-end">
+        <mat-checkbox formControlName="status" name="status">Status</mat-checkbox>
+      </div>
+    </div>
+
+    <div class="example-button-row">
+      <div class="button-w-txt">
+        <div>
+          <p class="p-position-top capitalize">save</p>
+        </div>
+        <div class="img flex a-center j-center">
+          <button mat-flat-button class="capitalize b-green c-white">save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

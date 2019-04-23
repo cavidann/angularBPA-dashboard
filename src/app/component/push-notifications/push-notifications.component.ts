@@ -13,6 +13,10 @@ import { notoficationsJSON } from 'src/app/static-datas/notifications';
 })
 export class PushNotificationsComponent implements OnInit {
 
+  activeUser = {
+    name: 'Perviz'
+  }
+
   addNotifcationForm: FormGroup;
 
   notifications: Notifications[] = notoficationsJSON;
@@ -50,10 +54,10 @@ export class PushNotificationsComponent implements OnInit {
 
     this.addNotifcationForm = new FormGroup({
       user : new FormControl(null, Validators.required),
-      createdAt: new FormControl(null, Validators.required),
-      createdBy: new FormControl(null, Validators.required),
-      modifiedAt: new FormControl(null, Validators.required),
-      modifiedBy: new FormControl(null, Validators.required)
+      createdAt: new FormControl(new Date(), Validators.required),
+      createdBy: new FormControl(this.activeUser.name, Validators.required),
+      modifiedAt: new FormControl(null),
+      modifiedBy: new FormControl(null)
     });
   }
 
@@ -62,7 +66,7 @@ export class PushNotificationsComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Notifications>(this.notifications);
     this.dataSource.paginator = this.paginator;
     
-    this.addNotifcationForm.reset()
+    return this.addNotifcationForm.get('user').reset()
     
     console.log(newData);
     

@@ -11,6 +11,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SchedulingEditComponent implements OnInit {
 
+  activeUser = {
+    name: 'Perviz'
+  }
+
   schedules: Scheduling[] = schedulingJSON;
   schedule: any;
   statusTpyes = [
@@ -58,7 +62,9 @@ export class SchedulingEditComponent implements OnInit {
         end : new FormControl(this.schedule.end, Validators.required),
         status : new FormControl(this.schedule.status, Validators.required),
         createdAt : new FormControl(this.schedule.createdAt, Validators.required),
-        createdBy : new FormControl(this.schedule.createdBy, Validators.required)
+        createdBy : new FormControl(this.schedule.createdBy, Validators.required),
+        modifiedAt: new FormControl(new Date(), Validators.required),
+        modifiedBy: new FormControl(this.activeUser.name, Validators.required)
       });
     }
   }

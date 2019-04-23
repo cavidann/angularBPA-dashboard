@@ -1,4 +1,4 @@
-.push-notifications-sc {
+.rules-edit-sc {
     max-width: 991px;
     margin: 0 auto;
     & > div {
@@ -9,17 +9,15 @@
       td:last-child {
         width: 100px;
       }
-    }
-    button {
-      padding: 0px;
-      background: transparent;
-      border: none;
-      &:focus{
-        outline: none;
+      td:nth-child(2), td:nth-child(4){
+        width: 20%;
+      }
+      td, th{
+        padding: 10px;
       }
     }
-    .fa-plus{
-      padding-top: 0px;
+    .example-button-row {
+      margin: 0 auto;
     }
   }
   
@@ -34,5 +32,9 @@
   }
   
   .form-group{
-    width: 100%;
+    width: 50%;
+  }
+
+  .mat-checkbox-form{
+    padding-bottom: 1.25em!important;
   }

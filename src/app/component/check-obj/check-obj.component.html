@@ -1,0 +1,235 @@
+<div class="check-obj-sc">
+  <form [formGroup]="addCheckObjForm" (ngSubmit)="addCheckObj(addCheckObjForm.value)"
+    class="example-form flex wrap col-100 a-center">
+    <div style="width: calc(100% - 55px)" class="flex">
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="ip" placeholder="ip" formControlName="ip" />
+        </mat-form-field>
+
+        <div *ngIf="ip.touched && ip.invalid">
+          <mat-error *ngIf="(ip?.errors)['required']">
+            Ip by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="checkType" name="checkType" formControlName="checkType">
+            <mat-option *ngFor="let checkType of checkTpyes" [value]="checkType">
+              <span>
+                {{checkType}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="checkType.touched && CheckTypeinvalid">
+          <mat-error *ngIf="(CheckType.errors)['required']">
+            CheckType by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group mat-checkbox-form flex j-center a-end">
+        <mat-checkbox formControlName="isNextCheckRequest" name="isNextCheckRequest">isN.C.</mat-checkbox>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="source" name="source" formControlName="source">
+            <mat-option *ngFor="let source of sourceTypes" [value]="source">
+              <span>
+                {{source}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="source.touched && source.invalid">
+          <mat-error *ngIf="(source?.errors)['required']">
+            Source by is required
+          </mat-error>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="example-button-row">
+      <div class="button-w-txt">
+        <div>
+          <p class="p-position-top">Create</p>
+        </div>
+        <div class="img flex a-center j-center">
+          <button type="submit" [disabled]="!addCheckObjForm.valid" [class.link]="addCheckObjForm.valid">
+            <i class="fas fa-plus" [class.c-green]="addCheckObjForm.valid"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form [formGroup]="filterForm" (ngSubmit)="filter(filterForm.value)" class="flex">
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-select placeholder="ip" name="ip" formControlName="ip">
+
+          <mat-option *ngFor="let obj of checkObjs" [value]="obj.ip">
+            <span>
+              {{obj.ip}}
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="filterIp.touched && filterIp.invalid">
+        <mat-error *ngIf="(filterIp.errors)['required']">
+          Ip by is required
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-select placeholder="checkType" name="checkType" formControlName="checkType">
+          <mat-option *ngFor="let checkType of checkTpyes" [value]="checkType">
+            <span>
+              {{checkType}}
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="filterCheckType.touched && filterCheckType.invalid">
+        <mat-error *ngIf="(filterCheckType.errors)['required']">
+          CheckType by is required
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-select placeholder="source" name="source" formControlName="source">
+          <mat-option *ngFor="let source of sourceTypes" [value]="source">
+            <span>
+              {{source}}
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="filterSource.touched && filterSource.invalid">
+        <mat-error *ngIf="(filterSource?.errors)['required']">
+          Source by is required
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="example-button-row">
+      <div class="button-w-txt">
+        <div>
+          <p class="p-position-top">Search</p>
+        </div>
+        <div class="img flex a-center j-center">
+          <button type="submit" [disabled]="!filterForm.valid" [class.link]="filterForm.valid">
+            <i class="fas fa-search" [class.c-blue]="filterForm.valid"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <div class="mat-elevation-z8 col-100">
+
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="ip">
+        <th mat-header-cell *matHeaderCellDef class="capitalize"> ip </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.ip}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="checkType">
+        <th mat-header-cell *matHeaderCellDef class="capitalize"> checkType </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.checkType}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isN.C.">
+        <th mat-header-cell *matHeaderCellDef class="capitalize"> isN.C. </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.isNextCheckRequest}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="source">
+        <th mat-header-cell *matHeaderCellDef class="capitalize"> source </th>
+        <td mat-cell *matCellDef="let element" class="permission">
+          {{element.source}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Created At </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.createdAt | date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef> Created By </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.createdBy}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="modifiedAt">
+        <th mat-header-cell *matHeaderCellDef> Modified At </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.modifiedAt | date: 'dd/MM/yyyy'}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="modifiedBy">
+        <th mat-header-cell *matHeaderCellDef> Modified By </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.modifiedBy}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="capitalize"> </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="flex j-end">
+            <div class="button-w-txt">
+              <div>
+                <p class="p-position-top">Edit</p>
+              </div>
+              <div class="img flex a-center j-center">
+                <i class="fas fa-edit c-blue link" (click)="edit(element.id)"></i>
+              </div>
+            </div>
+            <div class="button-w-txt">
+              <div>
+                <p class="p-position-top">Delete</p>
+              </div>
+              <div class="img flex a-center j-center">
+                <i class="fas fa-trash c-red link" (click)="delete(element)"></i>
+              </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

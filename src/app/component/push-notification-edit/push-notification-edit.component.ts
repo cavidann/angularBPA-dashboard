@@ -11,15 +11,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PushNotificationEditComponent implements OnInit {
 
+  activeUser = {
+    name: 'Perviz'
+  }
+
   id: string;
   editNotifcationForm: FormGroup;
   notifications: Notifications[] = notoficationsJSON;
   notification: any;
-  // auditTpyes = [
-  //   { type: 'ligth audit' },
-  //   { type: 'audit' },
-  //   { type: 'full audit' }
-  // ]
 
   get user() {
     return this.editNotifcationForm.get('user');
@@ -55,8 +54,8 @@ export class PushNotificationEditComponent implements OnInit {
       user : new FormControl(this.notification.user, Validators.required),
       createdAt: new FormControl(this.notification.createdAt, Validators.required),
       createdBy: new FormControl(this.notification.createdBy, Validators.required),
-      modifiedAt: new FormControl(this.notification.modifiedAt, Validators.required),
-      modifiedBy: new FormControl(this.notification.modifiedBy, Validators.required)
+      modifidAt: new FormControl(new Date(), Validators.required),
+      modifidBy: new FormControl(this.activeUser.name, Validators.required)
     });
   }
 

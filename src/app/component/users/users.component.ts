@@ -26,6 +26,7 @@ export class UsersComponent implements OnInit {
       children: [
         {value: 'status'},
         {value: 'scheduling'},
+        {value:'check-obj'},
         {value:'rules'},
         {value:'CMS'},
         {value:'logs'}

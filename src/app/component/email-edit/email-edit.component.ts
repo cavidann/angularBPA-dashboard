@@ -11,6 +11,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EmailEditComponent implements OnInit {
 
+  activeUser = {
+    name: 'Perviz'
+  }
+
   id: any;
   editEmailForm: FormGroup;
   emails: Emails[] = emailsJSON;
@@ -55,8 +59,8 @@ export class EmailEditComponent implements OnInit {
       email : new FormControl(this.emailItem.email, Validators.email),
       createdAt: new FormControl(this.emailItem.createdAt, Validators.required),
       createdBy: new FormControl(this.emailItem.createdBy, Validators.required),
-      modifiedAt: new FormControl(this.emailItem.modifiedAt, Validators.required),
-      modifiedBy: new FormControl(this.emailItem.modifiedBy, Validators.required)
+      modifiedAt: new FormControl(new Date(), Validators.required),
+      modifiedBy: new FormControl(this.activeUser.name, Validators.required)
     });
   }
 

@@ -29,6 +29,7 @@ export class UsersEditComponent implements OnInit {
         {value: 'status'},
         {value: 'scheduling'},
         {value:'rules'},
+        {value:'check-obj'},
         {value:'CMS'},
         {value:'logs'}
       ]

@@ -38,6 +38,10 @@ import { EmailEditComponent } from './component/email-edit/email-edit.component'
 import { CmsComponent } from './component/cms/cms.component';
 import { EscapeHtmlPipe } from './pipes/escape-html.pipe';
 import { ContentEditComponent } from './component/content-edit/content-edit.component';
+import { CheckObjComponent } from './component/check-obj/check-obj.component';
+import { CheckObjEditComponent } from './component/check-obj-edit/check-obj-edit.component';
+import { RulesComponent } from './component/rules/rules.component';
+import { RulesEditComponent } from './component/rules-edit/rules-edit.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +67,10 @@ import { ContentEditComponent } from './component/content-edit/content-edit.comp
     CmsComponent,
     EscapeHtmlPipe,
     ContentEditComponent,
+    CheckObjComponent,
+    CheckObjEditComponent,
+    RulesComponent,
+    RulesEditComponent,
   ],
   imports: [
     BrowserModule,

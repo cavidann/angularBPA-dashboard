@@ -16,6 +16,10 @@ import { PushNotificationEditComponent } from './component/push-notification-edi
 import { EmailEditComponent } from './component/email-edit/email-edit.component';
 import { CmsComponent } from './component/cms/cms.component';
 import { ContentEditComponent } from './component/content-edit/content-edit.component';
+import { CheckObjComponent } from './component/check-obj/check-obj.component';
+import { CheckObjEditComponent } from './component/check-obj-edit/check-obj-edit.component';
+import { RulesComponent } from './component/rules/rules.component';
+import { RulesEditComponent } from './component/rules-edit/rules-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -34,6 +38,10 @@ const routes: Routes = [
   { path: 'email-edit/:id', component: EmailEditComponent },
   { path: 'cms', component: CmsComponent },
   { path: 'content-edit/:id', component: ContentEditComponent },
+  { path: 'check-obj', component: CheckObjComponent },
+  { path: 'check-obj-edit/:id', component: CheckObjEditComponent },
+  { path: 'rules', component: RulesComponent },
+  { path: 'rules-edit/:id', component: RulesEditComponent },
 ];
 
 @NgModule({

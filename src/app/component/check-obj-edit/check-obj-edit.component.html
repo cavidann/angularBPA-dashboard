@@ -1,0 +1,73 @@
+<div class="check-obj-edit-sc">
+  <form [formGroup]="editCheckObjForm" (ngSubmit)="editCheckObj(editCheckObjForm.value)"
+  class="example-form flex wrap col-100 a-center">
+  <div style="width: calc(100% - 55px)" class="flex">
+
+      <div class="form-group">
+        <mat-form-field>
+          <input matInput type="text" class="form-control" name="ip" placeholder="ip" formControlName="ip" />
+        </mat-form-field>
+
+        <div *ngIf="ip.touched && ip.invalid">
+          <mat-error *ngIf="(ip?.errors)['required']">
+            Ip by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="checkType" name="checkType" formControlName="checkType">
+            <mat-option *ngFor="let checkType of checkTpyes" [value]="checkType">
+              <span>
+                {{checkType}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="checkTpyes.touched && checkTpyes.invalid">
+          <mat-error *ngIf="(checkTpyes?.errors)['required']">
+            CheckTpyes by is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="form-group mat-checkbox-form flex j-center a-end">
+        <mat-checkbox formControlName="isNextCheckRequest" name="isNextCheckRequest">isN.C.</mat-checkbox>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-select placeholder="source" name="source" formControlName="source">
+            <mat-option *ngFor="let source of sourceTypes" [value]="source">
+              <span>
+                {{source}}
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="source.touched && source.invalid">
+          <mat-error *ngIf="(source?.errors)['required']">
+            Source by is required
+          </mat-error>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="example-button-row">
+        <div class="button-w-txt">
+          <div>
+            <p class="p-position-top">Create</p>
+          </div>
+          <div class="img flex a-center j-center">
+            <button type="submit" [disabled]="!editCheckObjForm.valid" [class.link]="editCheckObjForm.valid">
+              <i class="fas fa-plus" [class.c-green]="editCheckObjForm.valid"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>

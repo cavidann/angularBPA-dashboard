@@ -14,6 +14,10 @@ export const sideMenuJSON = [
                 'url': 'scheduling'
             },
             {
+                'name': 'check-obj', 
+                'url': 'check-obj'
+            },
+            {
                 'name': 'rules', 
                 'url': 'rules'
             },

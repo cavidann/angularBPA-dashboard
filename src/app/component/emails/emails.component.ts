@@ -12,6 +12,10 @@ import { emailsJSON } from 'src/app/static-datas/emails';
 })
 export class EmailsComponent implements OnInit {
 
+  activeUser = {
+    name: 'Perviz'
+  }
+
   addEmailForm: FormGroup;
 
   emails: Emails[] = emailsJSON;
@@ -37,11 +41,11 @@ export class EmailsComponent implements OnInit {
   }
 
   get modifiedAt() {
-    return this.addEmailForm.get('modifiedAt');
+    return this.addEmailForm.get('createdAt');
   }
 
   get modifiedBy() {
-    return this.addEmailForm.get('modifiedBy');
+    return this.addEmailForm.get('createdBy');
   }
 
   constructor(
@@ -52,24 +56,26 @@ export class EmailsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
 
     this.addEmailForm = new FormGroup({
-      user : new FormControl(null, Validators.required),
-      email : new FormControl(null, [Validators.required, Validators.email]),
-      createdAt: new FormControl(null, Validators.required),
-      createdBy: new FormControl(null, Validators.required),
-      modifiedAt: new FormControl(null, Validators.required),
-      modifiedBy: new FormControl(null, Validators.required)
+      user: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required]),
+      createdAt: new FormControl(new Date()),
+      createdBy: new FormControl(this.activeUser.name),
+      modifiedAt: new FormControl(null),
+      modifiedBy: new FormControl(null)
     });
   }
 
   addEmail(newData) {
+
     this.emails.push(newData);
     this.dataSource = new MatTableDataSource<Emails>(this.emails);
     this.dataSource.paginator = this.paginator;
-    
-    this.addEmailForm.reset()
-    
+
+    this.addEmailForm.get('user').reset();
+    this.addEmailForm.get('email').reset();
+
     console.log(newData);
-    
+
   }
 
   delete(element) {

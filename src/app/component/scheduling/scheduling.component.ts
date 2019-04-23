@@ -13,6 +13,10 @@ import { Router } from '@angular/router';
 })
 export class SchedulingComponent implements OnInit {
 
+  activeUser = {
+    name: 'Perviz'
+  }
+
   schedules: Scheduling[] = schedulingJSON;
   statusTpyes = [
     { type: "admin", color: "orange" },
@@ -58,8 +62,10 @@ export class SchedulingComponent implements OnInit {
       start : new FormControl(null, Validators.required),
       end : new FormControl(null, Validators.required),
       status : new FormControl(null, Validators.required),
-      createdAt : new FormControl(null, Validators.required),
-      createdBy : new FormControl(null, Validators.required)
+      createdAt : new FormControl(new Date(), Validators.required),
+      createdBy : new FormControl(this.activeUser.name, Validators.required),
+      modifiedAt: new FormControl(null),
+      modifiedBy: new FormControl(null)
     });
   }
 
@@ -68,7 +74,9 @@ export class SchedulingComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Scheduling>(this.schedules);
     this.dataSource.paginator = this.paginator;
     
-    this.addSchedulingForm.reset()
+    this.addSchedulingForm.get('start').reset()
+    this.addSchedulingForm.get('end').reset()
+    this.addSchedulingForm.get('status').reset()
     
     console.log(newData);
     
